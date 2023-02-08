@@ -15,12 +15,17 @@
                               </div>
                         </div>
                         <div class="col-12">
-                              <form action="/products/" method="POST">
+                              <form action="/products/" method="POST" enctype="multipart/form-data">
                                     <div class="row product-detail">
                                           <div class="col-12 col-md-6">
                                                 <label for="name" class="form-label">Nombre del producto:</label>
                                                 <input type="text" id="name" name="name" placeholder="Ej: Zapatillas Reebok" class="form-input">
                                           </div>
+                                          <div class="col-12 col-md-6">
+                                                <label for="imageProduct" class="form-label">Ingrese un imagen</label>
+                                                <input type="file" id="imageProduct" name="imageProduct" class="form-input">
+                                          </div>
+
                                           <div class="col-12 col-md-6">
                                                 <label for="price" class="form-label">Precio del producto:</label>
                                                 <input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input">

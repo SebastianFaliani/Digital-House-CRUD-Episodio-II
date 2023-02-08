@@ -28,18 +28,27 @@ const controller = {
       // Create -  Method to store
       store: (req, res) => {
             let lastId = products[products.length - 1].id;
+            let image = "";
+            if (req.file) {
+                  image = req.file.filename;
+            } else {
+                  image = "default-image.png";
+            }
             let newProduct = {
                   id: lastId + 1,
-                  name: req.body.name,
+                  ...req.body,
+                  image,
+                  /*  name: req.body.name,
                   price: req.body.price,
                   discount: req.body.discount,
                   catergory: req.body.catergory,
                   description: req.body.description,
-                  image: "default-image.png",
+                  image: req.file.filename, */
             };
             products.push(newProduct);
             writeJson(products);
             res.redirect("/products/");
+            /* res.send(newProduct); */
       },
 
       // Update - Form to edit
@@ -53,7 +62,6 @@ const controller = {
       // Update - Method to update
       update: (req, res) => {
             let productId = Number(req.params.id);
-
             products.forEach((product) => {
                   if (product.id === productId) {
                         product.name = req.body.name;
@@ -61,6 +69,9 @@ const controller = {
                         product.discount = req.body.discount;
                         product.catergory = req.body.catergory;
                         product.description = req.body.description;
+                        if (req.file) {
+                              product.image = req.file.filename;
+                        }
                   }
             });
             writeJson(products);
